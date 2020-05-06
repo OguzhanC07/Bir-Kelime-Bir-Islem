@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import './App.css';
+import Main from './pages/main/main'
+import 'antd/dist/antd.css'
+import HeaderComponent from './components/Header'
+
+
+//Sayfalar
+import Birislem from './pages/onenumber/Birislem'
+import Birkelime from './pages/oneword/Birkelime'
+//Sayfalar
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <HeaderComponent />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/bir-islem" component={Birislem}/>
+          <Route exact path="/bir-kelime" component={Birkelime}/>
+        </Switch>
+      </Router>
+       
     </div>
+
   );
 }
 
