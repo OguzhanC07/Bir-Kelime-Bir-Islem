@@ -4,11 +4,8 @@ import {Link} from 'react-router-dom';
 import {Button} from 'antd';
 import screenImg from '../../assets/hg.jpg'
 
-/*.image{
-  height: 200px;
-  width: auto;
-  margin-bottom: 20px;
-}*/
+
+
 function main() {
   return (
 
