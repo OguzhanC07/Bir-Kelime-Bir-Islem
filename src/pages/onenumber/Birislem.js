@@ -1,138 +1,205 @@
 import React, { Component } from 'react'
-import {Button} from 'antd'
+import { Button } from 'antd'
 import './onenumber.css'
 
 
 
-let firstholder=[];
-let bestFar=0;
-let target=0;
+let firstholder = [];
+let bestFar = 0;
+let target = 0;
 export default class Birislem extends Component {
-   state={
-       random:1,
-       howmany:0,
-       targetnum:0,
-       stateholder:[],
-       statesolution:'',
-       isVisible:true,
-       isVisibleTar:true
-   }
-    getRandomNumbers=(e)=>{
-        var rand=Math.floor(Math.random() * 9) + 1;
-        if(this.state.howmany===5){
-            rand=(Math.floor(Math.random()*9)+1)*10;
+    state = {
+        random: 1,
+        howmany: 0,
+        targetnum: 0,
+        stateholder: [],
+        statesolution: '',
+        isVisible: true,
+        isVisibleTar: true
+    }
+    getRandomNumbers = (e) => {
+        var rand = Math.floor(Math.random() * 9) + 1;
+        if (this.state.howmany === 5) {
+            rand = (Math.floor(Math.random() * 9) + 1) * 10;
             this.setState({
-                isVisible:false
+                isVisible: false
             });
         }
-            firstholder[this.state.howmany]=rand;
-            
-            this.setState({
-            stateholder:firstholder,
-            howmany:this.state.howmany+1
+        firstholder[this.state.howmany] = rand;
+
+        this.setState({
+            stateholder: firstholder,
+            howmany: this.state.howmany + 1
         });
     }
 
-   getTargetNum=(e)=>{
-     target=Math.floor(Math.random()*898)+101;
-      this.setState({
-          targetnum:target,
-          isVisibleTar:false
-      });
-   }
+    getTargetNum = (e) => {
+        target = Math.floor(Math.random() * 898) + 101;
+        this.setState({
+            targetnum: target,
+            isVisibleTar: false
+        });
+    }
 
-   getAnswer=(e)=>{    //brute Force algoritması kullanılmıştır. Not : Her denemede sayılar tekrar kullanılmıştır.
-        while(true){
-            
+    getAnswer = (e) => {    //brute Force algoritması kullanılmıştır. Not : Her denemede sayılar tekrar kullanılmıştır.
+        // while(true){
+
+        //     //FARKLI DENEMELER İÇİN SAYILARI KARIŞTIRIYORUZ.
+        //     let number = Math.floor(Math.random() * 6);
+        //     let temp =firstholder[number];
+        //     firstholder[number]=firstholder[0];
+        //     firstholder[0]=temp;
+        //     //FARKLI DENEMELER İÇİN SAYILARI KARIŞTIRIYORUZ.
+
+        //     let total=firstholder[0]; //toplamı tutuyor
+
+        //     let solution= firstholder[0].toString(); //burada tüm çözümler tutuluyor.
+
+        //     let usingNums= Math.floor(Math.random()*6)+1; //çoğu işlemde hepsi kullanılmayacağı için rastgele sayı seçiyor.
+
+
+        //     for(let i =1 ; i<usingNums; i++){
+        //         let operation = Math.floor(Math.random()*4); //Rastgele operand seçimi
+
+
+        //         //İşlemler Kısmı
+        //         if(operation===0){
+        //             total+=firstholder[i];
+        //             solution+="+"+firstholder[i].toString();
+        //         }
+        //         if(operation===1){
+        //             total-=firstholder[i];
+        //             solution+="-"+firstholder[i].toString();
+        //         }
+        //         if(operation===2){
+        //             total*= firstholder[i];
+        //             solution+="*"+ firstholder[i].toString();
+        //         }
+        //         if (operation === 3) {
+        //             if ( total % firstholder[i] !== 0 ) continue;
+        //             total /= firstholder[i];
+        //             solution += " / " + firstholder[i].toString();
+        //         }
+        //         //İşlemler Kısmı                      
+        //     } 
+        //     solution += "="+ total.toString(); //her denemeyi solution'a yazdırıyoruz
+        //     this.setState({
+        //         statesolution:"İşlem bulundu!\n"+solution
+        //     })
+
+        //     if(Math.abs(target-total)< Math.abs(target-bestFar)){ //hedef sayı bulunmadığı zaman en yakın sayıyı sonuca yazdırıyor.
+        //         bestFar=total;
+        //         console.log(solution);
+        //     }
+
+        //     if(total===target){
+        //         console.log("Sonuç Bulundu!");
+        //         break;
+        //     }
+        // }
+        let currentSolution = "";
+        let lastAnswer = "";
+        var myVar = setInterval(() => {
             //FARKLI DENEMELER İÇİN SAYILARI KARIŞTIRIYORUZ.
             let number = Math.floor(Math.random() * 6);
-            let temp =firstholder[number];
-            firstholder[number]=firstholder[0];
-            firstholder[0]=temp;
+            let temp = firstholder[number];
+            firstholder[number] = firstholder[0];
+            firstholder[0] = temp;
             //FARKLI DENEMELER İÇİN SAYILARI KARIŞTIRIYORUZ.
 
-            let total=firstholder[0]; //toplamı tutuyor
+            let total = firstholder[0]; //toplamı tutuyor
 
-            let solution= firstholder[0].toString(); //burada tüm çözümler tutuluyor.
+            let solution = firstholder[0].toString(); //burada tüm çözümler tutuluyor.
 
-            let usingNums= Math.floor(Math.random()*6)+1; //çoğu işlemde hepsi kullanılmayacağı için rastgele sayı seçiyor.
+            let usingNums = Math.floor(Math.random() * 6) + 1; //çoğu işlemde hepsi kullanılmayacağı için rastgele sayı seçiyor.
 
 
-            for(let i =1 ; i<usingNums; i++){
-                let operation = Math.floor(Math.random()*4); //Rastgele operand seçimi
-                
-                
+            for (let i = 1; i < usingNums; i++) {
+                let operation = Math.floor(Math.random() * 4); //Rastgele operand seçimi
+
+
                 //İşlemler Kısmı
-                if(operation===0){
-                    total+=firstholder[i];
-                    solution+="+"+firstholder[i].toString();
+                if (operation === 0) {
+                    total += firstholder[i];
+                    solution += "+" + firstholder[i].toString();
                 }
-                if(operation===1){
-                    total-=firstholder[i];
-                    solution+="-"+firstholder[i].toString();
+                if (operation === 1) {
+                    total -= firstholder[i];
+                    solution += "-" + firstholder[i].toString();
                 }
-                if(operation===2){
-                    total*= firstholder[i];
-                    solution+="*"+ firstholder[i].toString();
+                if (operation === 2) {
+                    total *= firstholder[i];
+                    solution += "*" + firstholder[i].toString();
                 }
                 if (operation === 3) {
-                    if ( total % firstholder[i] !== 0 ) continue;
+                    if (total % firstholder[i] !== 0) continue;
                     total /= firstholder[i];
                     solution += " / " + firstholder[i].toString();
                 }
                 //İşlemler Kısmı                      
-            } 
-            solution += "="+ total.toString(); //her denemeyi solution'a yazdırıyoruz
-            this.setState({
-                statesolution:"İşlem bulundu!\n"+solution
-            })
-        
-            if(Math.abs(target-total)< Math.abs(target-bestFar)){ //hedef sayı bulunmadığı zaman en yakın sayıyı sonuca yazdırıyor.
-                bestFar=total;
+            }
+            solution += "=" + total.toString(); //her denemeyi solution'a yazdırıyoruz
+            // this.setState({
+            //     statesolution:"İşlem bulundu!\n"+solution
+            // })
+
+            if (Math.abs(target - total) < Math.abs(target - bestFar)) { //hedef sayı bulunmadığı zaman en yakın sayıyı sonuca yazdırıyor.
+                bestFar = total;
+                lastAnswer = solution;
                 console.log(solution);
             }
-            
-            if(total===target){
+
+            if (total === target) {
                 console.log("Sonuç Bulundu!");
-                break;
+                this.setState({
+                    statesolution: "İşlem bulundu!\n" + solution
+                })
+                currentSolution = solution;
+                clearInterval(myVar);
             }
-        }
-        // var myVar=setInterval(()=>{           
-        // },100);
-        // setTimeout(()=>{
-        //     clearInterval(myVar);
-        // },10000);
+        }, 0);
+        setTimeout(() => {
+            if (currentSolution === "") {
+                clearInterval(myVar);
+                console.log("Sonuç bulunamadı");
+                this.setState({
+                    statesolution: `Sonuç bulunamadı. En yakın işlem: ${lastAnswer}`
+                })
+            }
+            else
+                console.log("Sonuç bulundu");
+        }, 10000);
     }
 
     render() {
         return (
             <div>
                 <header className="App-header">
-                    
+
                     {
                         <ul className="menu">
-                        { 
-                          this.state.stateholder.map((value, index) => {
-                          return <li key={index}>{index+1}. sayi ={value}</li>
-                        })}
-                      </ul>
+                            {
+                                this.state.stateholder.map((value, index) => {
+                                    return <li key={index}>{index + 1}. sayi ={value}</li>
+                                })}
+                        </ul>
                     }
-                    {  this.state.isVisibleTar ? null :
+                    {this.state.isVisibleTar ? null :
                         <p>
                             Hedef Sayı={this.state.targetnum}
-                        </p> 
+                        </p>
                     }
-                    
-                    <Button disabled={this.state.isVisible ? "" : "{true}"}  onClick={this.getRandomNumbers.bind(this)}>Rastgele sayı getir.</Button>
-                    <Button disabled={this.state.isVisibleTar ? "" : "{true}"} onClick={this.getTargetNum}  >Hedef sayıyı getir.</Button>                                     
+
+                    <Button disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomNumbers.bind(this)}>Rastgele sayı getir.</Button>
+                    <Button disabled={this.state.isVisibleTar ? "" : "{true}"} onClick={this.getTargetNum}  >Hedef sayıyı getir.</Button>
                     <Button disabled={this.state.isVisibleTar || this.state.isVisible ? "{true}" : ""} onClick={this.getAnswer}> Gerekli İşlemi bul!</Button>
-                    
+
 
                     {
                         <p>{this.state.statesolution}</p>
                     }
-                
-                
+
+
                 </header>
             </div>
         )
