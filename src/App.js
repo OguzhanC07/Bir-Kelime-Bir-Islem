@@ -21,8 +21,7 @@ function App() {
           <Route exact path="/bir-islem" component={Birislem}/>
           <Route exact path="/bir-kelime" component={Birkelime}/>
         </Switch>
-      </Router>
-       
+      </Router> 
     </div>
 
   );

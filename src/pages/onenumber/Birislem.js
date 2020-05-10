@@ -42,11 +42,11 @@ export default class Birislem extends Component {
         });
     }
     getAnswer = (e) => {    //brute Force algoritması kullanılmıştır. Not : Her denemede sayılar tekrar kullanılmıştır.
-        //10 saniye deneme süresi sonunda bulunamazsa en yakın sonucu getirir.
+        //5 saniye deneme süresi sonunda bulunamazsa en yakın sonucu getirir.
         let label='Date.now()';
         console.time(label);
         let end= Date.now()+5000;
-        //10 saniye deneme süresi sonunda bulunamazsa en yakın sonucu getirir
+        //5 saniye deneme süresi sonunda bulunamazsa en yakın sonucu getirir
         while(Date.now()<end)
         {
 
