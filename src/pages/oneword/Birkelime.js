@@ -35,15 +35,10 @@ export default class Birkelime extends Component {
         if(this.state.howmany===7){
             this.setState({
                 isVisible:false,
+                sendbutton:true
             })
         }
     }
-    sendLetters=(e)=>{
-        this.setState({
-            sendbutton:true
-        })
-    }
-
     render() {
         return (
             <div>
@@ -62,7 +57,7 @@ export default class Birkelime extends Component {
 
                      
                 }
-
+                    <Button disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomLetters.bind(this)}>Rastgele Harf Getir.</Button>
 
                         <TextFileReader
                             txt={myTxt}
@@ -70,8 +65,7 @@ export default class Birkelime extends Component {
                             validation={this.state.sendbutton}
                         />    
                   
-                    <Button disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomLetters.bind(this)}>Rastgele Harf Getir.</Button>
-                    <Button disabled={this.state.isVisible ? "{true}" : ""} onClick={this.sendLetters}> Sonucu Bul</Button>
+                  
                 </header> 
                    
             </div>
