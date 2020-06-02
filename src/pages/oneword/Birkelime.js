@@ -10,13 +10,14 @@ export default class Birkelime extends Component {
         howmany:0,
         stateletters:[],
         isVisible:true,
-        sendbutton:false
+        sendbutton:false,
+        stringletters:""
     }
     
     
     getRandomLetters=(e)=>{
         var emptyString = "";
-        
+        var birlesik="";
         var sessiz = "bçcdfgğhjklmnprsştvyz";
         var sesli="aeıioöuü"
         
@@ -33,10 +34,16 @@ export default class Birkelime extends Component {
         })
 
         if(this.state.howmany===7){
+            for(var i=0;i<letters.length;i++){
+                birlesik+=letters[i];
+            }
+           
+           
             this.setState({
                 isVisible:false,
-                sendbutton:true
-            })
+                sendbutton:true,
+                stringletters:birlesik
+            }) 
         }
     }
     render() {
@@ -52,6 +59,7 @@ export default class Birkelime extends Component {
                             {
                                     this.state.stateletters.map((value, index) => {
                                     return <li key={index}>{index + 1}. harf ={value}</li>
+                                    
                                 })}
                         </ul>
 
@@ -62,6 +70,7 @@ export default class Birkelime extends Component {
                         <TextFileReader
                             txt={myTxt}
                             letter={this.state.stateletters}
+                            stringletter={this.state.stringletters}
                             validation={this.state.sendbutton}
                         />    
                   
