@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button} from 'antd';
+import {Button,Card} from 'antd';
 import TextFileReader from './TextFileReader';
 
 
@@ -49,23 +49,20 @@ export default class Birkelime extends Component {
     render() {
         return (
             <div>
-              
-                
-              
                 <header className="App-header">
-                {   
-                    
-                        <ul className="menu">
-                            {
-                                    this.state.stateletters.map((value, index) => {
-                                    return <li key={index}>{index + 1}. harf ={value}</li>
-                                    
-                                })}
-                        </ul>
-
-                     
-                }
-                    <Button disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomLetters.bind(this)}>Rastgele Harf Getir.</Button>
+                    <Card title="Kullanılacak Harfler">
+                       {
+                           this.state.stateletters.map((value,index)=>{
+                           return <Card.Grid key={index}>{index+1}. Harf = {value}</Card.Grid>
+                           })
+                       }    
+                       {
+                           this.state.stateletters.length > 7 ? <Card.Grid>Bonus Harf=?</Card.Grid> : ""
+                       }   
+                    </Card>
+               
+                    <div style={{padding:"20px"}}></div>
+                    <Button  disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomLetters.bind(this)}>Rastgele Harf Getir.</Button>
 
                         <TextFileReader
                             txt={myTxt}

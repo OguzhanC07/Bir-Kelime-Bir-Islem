@@ -33,7 +33,7 @@ class TextFileReader extends React.Component {
 			<div>
 				{
 					this.state.text.split(',').map((item,key)=>{
-						if(this.props.validation===true && item.length<11){
+						if(this.props.validation===true && item.length<10 && item.length>3){
 							if(item[0]===this.props.letter[0] || item[0]===this.props.letter[1] || item[0]===this.props.letter[2] || item[0]===this.props.letter[3] 
 								|| item[0]===this.props.letter[4] || item[0]===this.props.letter[5] || item[0]===this.props.letter[6] || item[0]===this.props.letter[7]){
 									wordslist.push(item);
