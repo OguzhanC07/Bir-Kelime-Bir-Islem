@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'antd'
+import { Button, Card } from 'antd'
 import './onenumber.css'
 
 
@@ -113,21 +113,24 @@ export default class Birislem extends Component {
                 <header className="App-header">
 
                     {
-                        <ul className="menu">
+                        <Card title="Kullanılacak Sayılar">
                             {
                                 this.state.stateholder.map((value, index) => {
-                                    return <li key={index}>{index + 1}. sayi ={value}</li>
+                                    return <Card.Grid key={index}>{index+1}. Harf = {value}</Card.Grid>
                                 })}
-                        </ul>
+                        </Card>
                     }
                     {this.state.isVisibleTar ? null :
                         <p>
                             Hedef Sayı={this.state.targetnum}
                         </p>
                     }
-
+                    
+                    <div style={{padding:"10px"}}></div>
                     <Button disabled={this.state.isVisible ? "" : "{true}"} onClick={this.getRandomNumbers.bind(this)}>Rastgele sayı getir.</Button>
+                    <div style={{padding:"10px"}}></div>
                     <Button disabled={this.state.isVisibleTar ? "" : "{true}"} onClick={this.getTargetNum}  >Hedef sayıyı getir.</Button>
+                    <div style={{padding:"10px"}}></div>
                     <Button disabled={this.state.isVisibleTar || this.state.isVisible ? "{true}" : ""} onClick={this.getAnswer}> Gerekli İşlemi bul!</Button>
 
 
